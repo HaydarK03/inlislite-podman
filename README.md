@@ -8,9 +8,38 @@ menghilangkan lisensi Inlislite v3 dari Perpusnas Indonesia. Kami bangga menggun
 * Modifikasi favicon
 * Modifikasi halaman utama (landing page)
 
-## podman run
+## podman 
+
+### create network
 ```shell
-podman run -d -p 8083:80 -e DB_HOST="host.docker.internal" -e DB_PORT="3306" -e DB_NAME="inlislite" -e DB_USERNAME="root" -e DB_PASSWORD="xxxxxx"  pizaini/inlislite:latest
+podman network create inlislite-net
+```
+
+### create database for inlislite
+
+```shell
+podman run -d \
+  --name mariadb-server \
+  --network inlislite-net \
+  -e MARIADB_ROOT_PASSWORD=strong-password \
+  -e MARIADB_DATABASE=inlislite \
+  -v ~/inlislite-podman/docker/inlislite.sql:/docker-entrypoint-initdb.d/inlislite.sql:Z \
+  mariadb:latest
+```
+
+### run inlislite
+
+```shell
+podman run -d \
+  --name inlislite \
+  --network inlislite-net \
+  -p 8083:80 \
+  -e DB_HOST=mariadb-server \
+  -e DB_PORT=3306 \
+  -e DB_NAME=inlislite \
+  -e DB_USERNAME=root \
+  -e DB_PASSWORD=strong-password \
+  pizaini/inlislite:latest
 ```
 
 ## Docker compose
