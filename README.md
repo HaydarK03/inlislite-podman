@@ -8,9 +8,9 @@ menghilangkan lisensi Inlislite v3 dari Perpusnas Indonesia. Kami bangga menggun
 * Modifikasi favicon
 * Modifikasi halaman utama (landing page)
 
-## Docker run
+## podman run
 ```shell
-docker run -d -p 8083:80 -e DB_HOST="host.docker.internal" -e DB_PORT="3306" -e DB_NAME="inlislite" -e DB_USERNAME="root" -e DB_PASSWORD="xxxxxx"  pizaini/inlislite:latest
+podman run -d -p 8083:80 -e DB_HOST="host.docker.internal" -e DB_PORT="3306" -e DB_NAME="inlislite" -e DB_USERNAME="root" -e DB_PASSWORD="xxxxxx"  pizaini/inlislite:latest
 ```
 
 ## Docker compose
