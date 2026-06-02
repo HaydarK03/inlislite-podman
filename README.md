@@ -23,7 +23,7 @@ podman run -d \
   --network inlislite-net \
   -e MARIADB_ROOT_PASSWORD=strong-password \
   -e MARIADB_DATABASE=inlislite \
-  -v ~/inlislite-podman/docker/inlislite.sql:/docker-entrypoint-initdb.d/inlislite.sql:Z \
+  -v ~/inlislite-podman/docker/inlislite_v3.sql:/docker-entrypoint-initdb.d/inlislite.sql:Z \
   mariadb:latest
 ```
 
